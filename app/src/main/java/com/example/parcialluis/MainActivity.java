@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.parcialluis.ml.Banmodel;
+import com.example.parcialluis.ml.ModeloFacultades;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
@@ -207,9 +208,9 @@ public class MainActivity extends AppCompatActivity implements OnSuccessListener
 
     public void PersonalizedModel(View v) {
         try {
-            Banmodel model = Banmodel.newInstance(getApplicationContext());
+            ModeloFacultades model = ModeloFacultades.newInstance(getApplicationContext());
             TensorImage image = TensorImage.fromBitmap(mSelectedImage);
-            Banmodel.Outputs outputs = model.process(image);
+            ModeloFacultades.Outputs outputs = model.process(image);
             List<Category> probability = outputs.getProbabilityAsCategoryList();
             Collections.sort(probability, new CategoryComparator());
             String res="";
@@ -346,15 +347,18 @@ public class MainActivity extends AppCompatActivity implements OnSuccessListener
         rgbFrameBitmap.setPixels(rgbBytes, 0, previewWidth, 0, 0, previewWidth, previewHeight);
 
         try {
-            Banmodel model = Banmodel.newInstance(getApplicationContext());
+            ModeloFacultades model = ModeloFacultades.newInstance(getApplicationContext());
             TensorImage image = TensorImage.fromBitmap(rgbFrameBitmap);
-            Banmodel.Outputs outputs = model.process(image);
+            ModeloFacultades.Outputs outputs = model.process(image);
             List<Category> probability = outputs.getProbabilityAsCategoryList();
             Collections.sort(probability, new CategoryComparator());
             String res="";
-            for (int i = 0; i < probability.size(); i++)
-                res = res + probability.get(i).getLabel() +  " " +  probability.get(i).getScore()*100 + " % \n";
+            for (int i = 0; i < probability.size(); i++) {
+                if(probability.get(i).getScore()*100>50) {
+                    res = res + probability.get(i).getLabel() + " " + probability.get(i).getScore() * 100 + " % \n";
 
+                }
+            }
             txtResults.setText(res);
             model.close();
         } catch (IOException e) {

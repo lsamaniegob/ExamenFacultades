@@ -4,61 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E6E6C8"
+    android:backgroundTint="#FFFACD"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="#FFEB3B"
-        android:text="Google ML Kit"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_margin="25dp"
+        android:background="#ECCED8"
+        android:text="UNIVERSIDAD \nTÉCNICA ESTATAL DE QUEVEDO"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="10dp" />
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/btGallery"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/btGallery"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_margin="5dp"
+        android:drawableLeft="@android:drawable/ic_menu_gallery"
         android:onClick="abrirGaleria"
         android:text="Galería"
+        android:textColor="#FFFFFF"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/btCamera"
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
     <Button
         android:id="@+id/btCamera"
-        android:layout_margin="5dp"
         android:layout_width="0dp"
         android:layout_height="55dp"
+        android:layout_margin="5dp"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
         android:onClick="abrirCamara"
         android:text="Cámara"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
+        android:textColor="#FFFFFF"
         app:layout_constraintLeft_toRightOf="@+id/btGallery"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@android:color/black"
         android:layout_margin="10dp"
+        android:background="#FFF0F5"
         app:layout_constraintBottom_toTopOf="@+id/txtresults"
-        app:layout_constraintTop_toBottomOf="@+id/btGallery">
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/btGallery"
+        tools:layout_editor_absoluteX="10dp"></FrameLayout>
 
 
     <TextView
         android:id="@+id/txtresults"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
         android:text="Resultados:"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@id/btObject"
         tools:layout_editor_absoluteX="10dp" />
 
